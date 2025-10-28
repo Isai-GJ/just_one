@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewSport" content="width=device-width, initial-scale=1.0">
+    <title>Just One - El Juego</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Menu Screen -->
+        <div id="main-menu" class="screen active">
+            <h1>Just <span class="title-accent">One</span></h1>
+            <p id="high-score-menu" class="high-score-text"></p>
+            <p class="intro-text">¡Adivina la palabra secreta! ¿Podrás alcanzar la puntuación perfecta?</p>
+            <button id="start-game-btn">Iniciar Juego</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <button id="end-game-now-btn" class="control-btn end-game subtle-btn">Terminar</button>
+            <div class="game-info">
+                <p>Puntuación: <span id="score-display">0</span></p>
+                <p>Cartas Restantes: <span id="cards-remaining-display">13</span></p>
+            </div>
+
+            <div class="card-flipper">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="card-back-icon">?</span>
+                    </div>
+                    <div class="card-back-content">
+                        <div class="word-list">
+                            <div class="word-item"><span class="word-number">1.</span><span id="word-1" class="word blue-border"></span></div>
+                            <div class="word-item"><span class="word-number">2.</span><span id="word-2" class="word green-border"></span></div>
+                            <div class="word-item"><span class="word-number">3.</span><span id="word-3" class="word red-border"></span></div>
+                            <div class="word-item"><span class="word-number">4.</span><span id="word-4" class="word orange-border"></span></div>
+                            <div class="word-item"><span class="word-number">5.</span><span id="word-5" class="word yellow-border"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reveal-controls">
+                <button id="reveal-card-btn">Revelar Carta</button>
+            </div>
+
+            <div id="game-controls" class="game-controls">
+                <button id="success-btn" class="control-btn success">Éxito</button>
+                <button id="pass-btn" class="control-btn pass">Pasar</button>
+                <button id="failure-btn" class="control-btn failure">Fallo</button>
+            </div>
+        </div>
+
+        <!-- End Game Screen -->
+        <div id="end-game-screen" class="screen">
+            <h2>Juego Terminado</h2>
+            <p>Tu puntuación final es: <span id="final-score-display">0</span></p>
+            <p id="high-score-end" class="high-score-text"></p>
+            <p id="score-message"></p>
+            <button id="restart-game-btn">Regresar al Menú Principal</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
