@@ -131,10 +131,11 @@ const revealControls = document.getElementById('reveal-controls');
 const gameControls = document.getElementById('game-controls');
 
 // Audio Elements
-const failSound = new Audio('sounds/fail.wav');
-const midSound = new Audio('sounds/mid.wav');
-const topSound = new Audio('sounds/top.wav');
-const startSound = new Audio('sounds/start.wav');
+const clickSound = new Audio('sounds/click.mp3');
+const flipSound = new Audio('sounds/flip.mp3');
+const failSound = new Audio('sounds/fail.mp3');
+const midSound = new Audio('sounds/mid.mp3');
+const topSound = new Audio('sounds/top.mp3');
 
 const startGameBtn = document.getElementById('start-game-btn');
 const revealCardBtn = document.getElementById('reveal-card-btn');
@@ -187,8 +188,6 @@ function updateHighScore() {
 
 // Function to initialize a new game
 function initGame() {
-    startSound.play();
-
     score = 0;
     cardsPlayed = 0;
     cardsRemaining = 13; // Reset to 13 for a new game
@@ -250,6 +249,7 @@ function handleChoice(type) {
         endGame();
     } else {
         // Flip back the card and prepare for the next round
+        flipSound.play();
         cardFlipper.classList.remove('is-flipped');
         revealControls.style.display = 'block';
         gameControls.style.display = 'none';
@@ -301,20 +301,49 @@ function showScreen(screenToShow) {
 }
 
 function revealCard() {
+    flipSound.play();
     cardFlipper.classList.add('is-flipped');
     revealControls.style.display = 'none';
     gameControls.style.display = 'block';
 }
 
 // Event Listeners
-startGameBtn.addEventListener('click', initGame);
-restartGameBtn.addEventListener('click', () => showScreen(mainMenuScreen));
+startGameBtn.addEventListener('click', () => {
+    // --- Audio Unlock/Preload for Mobile ---
+    // Play a sound on the first user interaction to "unlock" the audio context.
+    // We use the click sound itself for this.
+    clickSound.play();
+
+    // Preload other sounds so they are ready to play without delay.
+    // We set their volume to 0, play and pause them, then reset volume.
+    // This is a robust way to force mobile browsers to buffer the audio.
+    [flipSound, failSound, midSound, topSound].forEach(sound => {
+        sound.load();
+    });
+    // --- End of Audio Unlock ---
+
+    initGame();
+});
+
+restartGameBtn.addEventListener('click', () => {
+    clickSound.play();
+    showScreen(mainMenuScreen);
+});
 revealCardBtn.addEventListener('click', revealCard);
 
-successBtn.addEventListener('click', () => handleChoice('success'));
-passBtn.addEventListener('click', () => handleChoice('pass'));
-failureBtn.addEventListener('click', () => handleChoice('failure'));
-endGameNowBtn.addEventListener('click', endGame);
+successBtn.addEventListener('click', () => {
+    handleChoice('success');
+});
+passBtn.addEventListener('click', () => {
+    handleChoice('pass');
+});
+failureBtn.addEventListener('click', () => {
+    handleChoice('failure');
+});
+endGameNowBtn.addEventListener('click', () => {
+    clickSound.play();
+    endGame();
+});
 
 // Initial screen setup
 loadHighScore();

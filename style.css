@@ -225,3 +225,12 @@ button:hover {
 .subtle-btn:hover {
     background-color: #5a6268;
 }
+
+/* End Game Screen Specifics */
+#final-score-display {
+    font-size: 5em; /* Significantly larger font size */
+    font-weight: bold;
+    color: #ffc107; /* Yellow accent color */
+    display: block; /* Make it a block to take its own space */
+    margin: 10px 0 20px; /* Add some vertical spacing */
+}
