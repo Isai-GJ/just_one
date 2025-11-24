@@ -125,10 +125,17 @@ const HIGH_SCORE_KEY = 'justOneHighScore';
 const mainMenuScreen = document.getElementById('main-menu');
 const gameScreen = document.getElementById('game-screen');
 const endGameScreen = document.getElementById('end-game-screen');
+const wordModeScreen = document.getElementById('word-mode-screen');
 const highScoreMenuDisplay = document.getElementById('high-score-menu');
 const cardFlipper = document.querySelector('.card-flipper');
 const revealControls = document.getElementById('reveal-controls');
 const gameControls = document.getElementById('game-controls');
+const clueInputContainer = document.getElementById('clue-input-container');
+const clueDisplayContainer = document.getElementById('clue-display-container');
+const clueInput = document.getElementById('clue-input');
+const clueDisplay = document.getElementById('clue-display');
+
+
 
 // Audio Elements
 const clickSound = new Audio('sounds/click.mp3');
@@ -138,6 +145,10 @@ const midSound = new Audio('sounds/mid.mp3');
 const topSound = new Audio('sounds/top.mp3');
 
 const startGameBtn = document.getElementById('start-game-btn');
+const wordModeBtn = document.getElementById('word-mode-btn');
+const lockClueBtn = document.getElementById('lock-clue-btn');
+const nextClueBtn = document.getElementById('next-clue-btn');
+const wordModeEndBtn = document.getElementById('word-mode-end-btn');
 const revealCardBtn = document.getElementById('reveal-card-btn');
 const restartGameBtn = document.getElementById('restart-game-btn');
 
@@ -297,6 +308,7 @@ function showScreen(screenToShow) {
     mainMenuScreen.classList.remove('active');
     gameScreen.classList.remove('active');
     endGameScreen.classList.remove('active');
+    wordModeScreen.classList.remove('active');
     screenToShow.classList.add('active');
 }
 
@@ -325,6 +337,29 @@ startGameBtn.addEventListener('click', () => {
     initGame();
 });
 
+wordModeBtn.addEventListener('click', () => {
+    clickSound.play();
+    clueInput.value = '';
+    clueInputContainer.style.display = 'block';
+    clueDisplayContainer.style.display = 'none';
+    showScreen(wordModeScreen);
+    clueInput.focus();
+});
+
+lockClueBtn.addEventListener('click', () => {
+    const clue = clueInput.value.trim();
+    if (clue) {
+        clickSound.play();
+        clueDisplay.textContent = clue.toUpperCase();
+        clueInputContainer.style.display = 'none';
+        clueDisplayContainer.style.display = 'block';
+    }
+});
+
+nextClueBtn.addEventListener('click', () => {
+    wordModeBtn.click(); // Simulate click to reset the screen
+});
+
 restartGameBtn.addEventListener('click', () => {
     clickSound.play();
     showScreen(mainMenuScreen);
@@ -343,6 +378,11 @@ failureBtn.addEventListener('click', () => {
 endGameNowBtn.addEventListener('click', () => {
     clickSound.play();
     endGame();
+});
+
+wordModeEndBtn.addEventListener('click', () => {
+    clickSound.play();
+    showScreen(mainMenuScreen);
 });
 
 // Initial screen setup

@@ -1,7 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #1a1a1a;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23222222' fill-opacity='0.4'%3E%3Cpath d='M0 40L40 0H0v40zM40 40V0h-2.5L0 37.5V40h40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     color: #e0e0e0; /* Light text color */
     display: flex;
     justify-content: center;
@@ -37,14 +36,15 @@ h1, h2 {
 }
 
 .title-accent {
-    color: #ffc107; /* Yellow accent */
+    color: #00bcd4; /* Cyan accent */
 }
 
 .high-score-text {
-    color: #fd7e14; /* Orange accent */
+    color: #00bcd4; /* Cyan accent */
     font-weight: bold;
     margin-bottom: 15px;
     font-size: 1.1em;
+    text-transform: uppercase;
 }
 
 .intro-text {
@@ -126,13 +126,13 @@ button:hover {
 
 .card-front {
     background-color: #3a3a3a;
-    border: 3px solid #ffc107; /* Yellow accent */
+    border: 3px solid #00bcd4; /* Cyan accent */
 }
 
 .card-back-icon {
     font-size: 100px;
     font-weight: bold;
-    color: #ffc107; /* Yellow accent */
+    color: #00bcd4; /* Cyan accent */
     user-select: none; /* Prevents text selection */
 }
 
@@ -209,8 +209,8 @@ button:hover {
 .control-btn.pass:hover { background-color: #5a6268; }
 .control-btn.failure { background-color: #dc3545; }
 .control-btn.failure:hover { background-color: #c82333; }
-.control-btn.end-game { background-color: #ffc107; color: #212529; }
-.control-btn.end-game:hover { background-color: #e0a800; }
+.control-btn.end-game { background-color: #00bcd4; color: #1a1a1a; }
+.control-btn.end-game:hover { background-color: #0097a7; }
 
 .subtle-btn {
     position: absolute;
@@ -230,7 +230,40 @@ button:hover {
 #final-score-display {
     font-size: 5em; /* Significantly larger font size */
     font-weight: bold;
-    color: #ffc107; /* Yellow accent color */
+    color: #00bcd4; /* Cyan accent color */
     display: block; /* Make it a block to take its own space */
     margin: 10px 0 20px; /* Add some vertical spacing */
+}
+
+/* Word Mode Screen Specifics */
+#word-mode-btn {
+    position: static;
+    display: block;
+    margin: 20px auto 0;
+    font-size: 0.9em;
+    padding: 8px 15px;
+    background-color: #6c757d;
+}
+
+#word-mode-btn:hover {
+    background-color: #5a6268;
+}
+
+#clue-input {
+    width: 80%;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #eee;
+}
+
+#clue-display {
+    font-size: 4.5em;
+    font-weight: bold;
+    color: #00bcd4; /* Cyan accent for visibility */
+    margin: 40px 0;
+    word-break: break-word; /* Prevents long words from overflowing */
 }

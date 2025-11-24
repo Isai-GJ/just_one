@@ -10,10 +10,11 @@
     <div class="container">
         <!-- Main Menu Screen -->
         <div id="main-menu" class="screen active">
-            <h1>Just <span class="title-accent">One</span></h1>
+            <h1>JUST <span class="title-accent">ONE</span></h1>
             <p id="high-score-menu" class="high-score-text"></p>
             <p class="intro-text">¡Adivina la palabra secreta! ¿Podrás alcanzar la puntuación perfecta?</p>
             <button id="start-game-btn">Iniciar Juego</button>
+            <button id="word-mode-btn" class="subtle-btn">Modo Palabra</button>
         </div>
 
         <!-- Game Screen -->
@@ -59,6 +60,23 @@
             <p id="high-score-end" class="high-score-text"></p>
             <p id="score-message"></p>
             <button id="restart-game-btn">Regresar al Menú Principal</button>
+        </div>
+
+        <!-- Word Mode Screen -->
+        <div id="word-mode-screen" class="screen">
+            <button id="word-mode-end-btn" class="control-btn end-game subtle-btn">Terminar</button>
+            
+            <div id="clue-input-container">
+                <h2>Modo Palabra</h2>
+                <p class="intro-text">Introduce tu pista y presiona "Bloquear".</p>
+                <input type="text" id="clue-input" placeholder="Escribe tu pista aquí..." autocomplete="off">
+                <button id="lock-clue-btn">Bloquear Pista</button>
+            </div>
+
+            <div id="clue-display-container" style="display: none;">
+                <p id="clue-display"></p>
+                <button id="next-clue-btn">Pista Siguiente</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
